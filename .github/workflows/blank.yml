@@ -8,23 +8,25 @@ on:
 jobs:
   azure-federated-access:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write  # This allows GitHub Actions to request the ID token
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Login to Azure using GitHub Actions and Federated Identity
+      - name: Login to Azure using Federated Identity
         uses: azure/login@v2
         with:
-          client-id: d34080d3-43eb-4c75-9201-259003e44bd3
           tenant-id: fdd066e1-ee37-49bc-b08f-d0e152119b04
-          subscription-id: f89fc1d7-0449-4b52-bdd7-804f53711a6f  # Add the subscription ID her
-          audience: "api://AzureADTokenExchange"  # Add audience parameter
+          subscription-id: f89fc1d7-0449-4b52-bdd7-804f53711a6f  # Add this secret
+          auth-type: "federated"
+          audience: "api://AzureADTokenExchange"  # This is the audience for the federated token
 
       - name: Access Azure Storage Blob
         run: |
           az storage blob download \
-            --account-name <your-storage-account-name> \
-            --container-name <your-container-name> \
-            --name <blob-name> \
-            --file <local-path-to-save-blob>
+            --account-name iamazurelab3331fa542 \
+            --container-name flag \
+            --name flag.txt \
+            --file flag.txt  # Ensure this path is valid for your runner environment
