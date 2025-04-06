@@ -12,18 +12,25 @@ on:
 jobs:
   azure-login:
     runs-on: ubuntu-latest
+
     steps:
+      # Checkout the code in the repo
       - name: Checkout Code
         uses: actions/checkout@v2
 
+      # Login to Azure using Managed Identity
       - name: Login with Managed Identity
         uses: azure/login@v1
         with:
-          client-id: c233bf84-6353-4e44-add5-88e57659b353
-          tenant-id: fdd066e1-ee37-49bc-b08f-d0e152119b04
-          subscription-id: 201d0ac0-9452-4197-9f2e-d3bb2f3c42b3
-          auth-type: SERVICE_PRINCIPAL  # Explicitly use service principal authentication
+          client-id: c233bf84-6353-4e44-add5-88e57659b353  # Managed Identity Client ID
+          tenant-id: fdd066e1-ee37-49bc-b08f-d0e152119b04  # Tenant ID
+          subscription-id: 201d0ac0-9452-4197-9f2e-d3bb2f3c42b3  # Subscription ID
+          auth-type: msi  # Specify Managed Identity (MSI) for authentication
 
+      # List the storage blobs using Azure CLI
       - name: List Storage Blob
         run: |
-          az storage blob list --account-name iamazurelab2331fa542 --container-name flag --auth-mode login
+          az storage blob list \
+            --account-name iamazurelab2331fa542 \
+            --container-name flag \
+            --auth-mode login  # Use the login-based authentication
