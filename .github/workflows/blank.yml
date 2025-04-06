@@ -17,15 +17,15 @@ jobs:
         uses: azure/login@v2
         with:
           client-id: d34080d3-43eb-4c75-9201-259003e44bd3
-          client-secret: OZ38Q~PAGYE0igyEj4OrJH5E0vsqdXKc_LJpHbxQ
           tenant-id: fdd066e1-ee37-49bc-b08f-d0e152119b04
-          federated-identity: true
-          identity-id: /subscriptions/f89fc1d7-0449-4b52-bdd7-804f53711a6f/resourcegroups/iam-azure-labs/providers/Microsoft.ManagedIdentity/userAssignedIdentities/iam-azure-lab-3-identity
+          subscription-id: f89fc1d7-0449-4b52-bdd7-804f53711a6f  # Add the subscription ID here
+          auth-type: "federated"  # This ensures federated authentication
+          audience: "api://AzureADTokenExchange"  # Add audience parameter
 
       - name: Access Azure Storage Blob
         run: |
           az storage blob download \
-            --account-name iamazurelab3331fa542 \
-            --container-name flag \
-            --name flag.txt \
-            --file C:\
+            --account-name <your-storage-account-name> \
+            --container-name <your-container-name> \
+            --name <blob-name> \
+            --file <local-path-to-save-blob>
