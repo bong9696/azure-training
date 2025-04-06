@@ -17,6 +17,7 @@ jobs:
         with:
           client-id: c233bf84-6353-4e44-add5-88e57659b353
           tenant-id: fdd066e1-ee37-49bc-b08f-d0e152119b04
+          subscription-id: f89fc1d7-0449-4b52-bdd7-804f53711a6f
 
       - name: List Storage Blob
         run: |
