@@ -1,0 +1,26 @@
+name: Azure Login with Managed Identity
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  azure-login:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Set up Azure CLI
+        uses: azure/setup-azure-cli@v1
+
+      - name: Login with Managed Identity
+        uses: azure/login@v1
+        with:
+          client-id: c233bf84-6353-4e44-add5-88e57659b353
+          tenant-id: azure.training.hacktricks.xyz
+
+      - name: List Storage Blob
+        run: |
+          az storage blob list --account-name iamazurelab2331fa542 --container-name flag --auth-mode login
