@@ -18,8 +18,7 @@ jobs:
         with:
           client-id: d34080d3-43eb-4c75-9201-259003e44bd3
           tenant-id: fdd066e1-ee37-49bc-b08f-d0e152119b04
-          subscription-id: f89fc1d7-0449-4b52-bdd7-804f53711a6f  # Add the subscription ID here
-          auth-type: IDENTITY  # This ensures federated authentication
+          subscription-id: f89fc1d7-0449-4b52-bdd7-804f53711a6f  # Add the subscription ID her
           audience: "api://AzureADTokenExchange"  # Add audience parameter
 
       - name: Access Azure Storage Blob
