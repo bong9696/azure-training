@@ -19,8 +19,8 @@ jobs:
         uses: azure/login@v1
         with:
           client-id: c233bf84-6353-4e44-add5-88e57659b353
-          tenant-id: azure.training.hacktricks.xyz
+          tenant-id: fdd066e1-ee37-49bc-b08f-d0e152119b04  # Use the tenant ID you just retrieved
 
       - name: List Storage Blob
         run: |
-          az storage blob list --account-name iamazurelab3331fa542 --container-name flag --auth-mode login
+          az storage blob list --account-name iamazurelab2331fa542 --container-name flag --auth-mode login
