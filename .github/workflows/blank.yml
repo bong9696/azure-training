@@ -4,8 +4,8 @@ name: Run Azure Login with User-assigned Managed Identity
 on: [push]
 
 jobs:
-  build-and-deploy:
-    runs-on: self-hosted
+  azure-login:
+    runs-on: ubuntu-latest
     steps:
       - name: Azure login
         uses: azure/login@v2
