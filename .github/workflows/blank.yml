@@ -1,5 +1,9 @@
 name: Azure Login with Managed Identity
 
+permissions:
+  id-token: write  # Grant permission to write the ID token
+  contents: read   # Read repository contents
+
 on:
   push:
     branches:
@@ -12,12 +16,16 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v2
 
+      - name: Set up Azure CLI
+        uses: azure/setup-azure-cli@v1  # Set up Azure CLI
+
       - name: Login with Managed Identity
         uses: azure/login@v1
         with:
           client-id: c233bf84-6353-4e44-add5-88e57659b353
           tenant-id: fdd066e1-ee37-49bc-b08f-d0e152119b04
-          subscription-id: f89fc1d7-0449-4b52-bdd7-804f53711a6f
+          subscription-id: 201d0ac0-9452-4197-9f2e-d3bb2f3c42b3
+          auth-type: sp  # Explicitly use service principal authentication
 
       - name: List Storage Blob
         run: |
