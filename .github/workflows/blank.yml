@@ -13,13 +13,13 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Set up Azure CLI
-        uses: azure/setup-azure-cli@v1
+        uses: azure/setup-azure-cli@v2  # Update to the latest version v2
 
       - name: Login with Managed Identity
         uses: azure/login@v1
         with:
           client-id: c233bf84-6353-4e44-add5-88e57659b353
-          tenant-id: fdd066e1-ee37-49bc-b08f-d0e152119b04  # Use the tenant ID you just retrieved
+          tenant-id: fdd066e1-ee37-49bc-b08f-d0e152119b04
 
       - name: List Storage Blob
         run: |
