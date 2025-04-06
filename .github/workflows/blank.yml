@@ -20,7 +20,6 @@ jobs:
         with:
           tenant-id: fdd066e1-ee37-49bc-b08f-d0e152119b04
           subscription-id: f89fc1d7-0449-4b52-bdd7-804f53711a6f  # Add this secret
-          auth-type: IDENTITY
           audience: "api://AzureADTokenExchange"  # This is the audience for the federated token
 
       - name: Access Azure Storage Blob
