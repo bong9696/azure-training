@@ -18,6 +18,7 @@ jobs:
       - name: Login to Azure using Federated Identity
         uses: azure/login@v2
         with:
+          client-id: d34080d3-43eb-4c75-9201-259003e44bd3
           tenant-id: fdd066e1-ee37-49bc-b08f-d0e152119b04
           subscription-id: f89fc1d7-0449-4b52-bdd7-804f53711a6f  # Add this secret
           audience: "api://AzureADTokenExchange"  # This is the audience for the federated token
