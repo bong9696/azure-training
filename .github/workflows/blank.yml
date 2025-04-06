@@ -22,7 +22,7 @@ jobs:
           client-id: c233bf84-6353-4e44-add5-88e57659b353
           tenant-id: fdd066e1-ee37-49bc-b08f-d0e152119b04
           subscription-id: 201d0ac0-9452-4197-9f2e-d3bb2f3c42b3
-          auth-type: sp  # Explicitly use service principal authentication
+          auth-type: SERVICE_PRINCIPAL  # Explicitly use service principal authentication
 
       - name: List Storage Blob
         run: |
