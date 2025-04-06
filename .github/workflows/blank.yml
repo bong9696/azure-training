@@ -1,32 +1,31 @@
-# File: .github/workflows/workflow.yml
+name: Azure Federated Identity Access
 
-name: Run Azure Login with User-assigned Managed Identity
-on: [push]
+on:
+  push:
+    branches:
+      - main
 
 jobs:
-  azure-login:
+  azure-federated-access:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Azure login
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Login to Azure using GitHub Actions and Federated Identity
         uses: azure/login@v2
         with:
-          auth-type: IDENTITY
-          client-id: c233bf84-6353-4e44-add5-88e57659b353
+          client-id: d34080d3-43eb-4c75-9201-259003e44bd3
+          client-secret: OZ38Q~PAGYE0igyEj4OrJH5E0vsqdXKc_LJpHbxQ
           tenant-id: fdd066e1-ee37-49bc-b08f-d0e152119b04
-          subscription-id: f89fc1d7-0449-4b52-bdd7-804f53711a6f
+          federated-identity: true
+          identity-id: /subscriptions/f89fc1d7-0449-4b52-bdd7-804f53711a6f/resourcegroups/iam-azure-labs/providers/Microsoft.ManagedIdentity/userAssignedIdentities/iam-azure-lab-3-identity
 
-      # Azure CLI Action only supports linux self-hosted runners for now.
-      # If you want to execute the Azure CLI script on a windows self-hosted runner, you can execute it directly in `run`.
-      - name: Azure CLI script
-        uses: azure/cli@v2
-        with:
-          azcliversion: latest
-          inlineScript: |
-            az account show
-
-      - name: Azure PowerShell script
-        uses: azure/powershell@v2
-        with:
-          azPSVersion: "latest"
-          inlineScript: |
-            Get-AzContext
+      - name: Access Azure Storage Blob
+        run: |
+          az storage blob download \
+            --account-name iamazurelab3331fa542 \
+            --container-name flag \
+            --name flag.txt \
+            --file C:\
