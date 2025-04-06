@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Set up Azure CLI
-        uses: azure/setup-azure-cli@v1.0.0  # Specify a specific version
+        uses: azure/setup-azure-cli@v1  # Use the stable v1 version without specifying the patch version
 
       - name: Login with Managed Identity
         uses: azure/login@v1
