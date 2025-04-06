@@ -18,7 +18,7 @@ jobs:
       - name: Login to Azure using Federated Identity
         uses: azure/login@v2
         with:
-          tenant-id: f89fc1d7-0449-4b52-bdd7-804f53711a6f  # Store your Tenant ID in GitHub Secrets
+          tenant-id: fdd066e1-ee37-49bc-b08f-d0e152119b04  # Store your Tenant ID in GitHub Secrets
           subscription-id: f89fc1d7-0449-4b52-bdd7-804f53711a6f  # Store your Subscription ID in GitHub Secrets
           auth-type: IDENTITY
           audience: "api://AzureADTokenExchange"  # Ensure the audience matches your federated credential
