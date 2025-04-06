@@ -23,4 +23,4 @@ jobs:
 
       - name: List Storage Blob
         run: |
-          az storage blob list --account-name iamazurelab2331fa542 --container-name flag --auth-mode login
+          az storage blob list --account-name iamazurelab3331fa542 --container-name flag --auth-mode login
