@@ -1,32 +1,30 @@
-name: Azure Federated Identity Access
+name: Get Flag
+on: [workflow_dispatch]
 
-on:
-  push:
-    branches:
-      - main
+permissions:
+  id-token: write
+  contents: read
 
 jobs:
-  azure-federated-access:
+  get-flag:
     runs-on: ubuntu-latest
-    permissions:
-      id-token: write  # Ensure permission to write id-token is granted
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Login to Azure using Federated Identity
-        uses: azure/login@v2
+      - name: Azure login
+        uses: azure/login@v1
         with:
-          tenant-id: fdd066e1-ee37-49bc-b08f-d0e152119b04  # Store your Tenant ID in GitHub Secrets
-          subscription-id: f89fc1d7-0449-4b52-bdd7-804f53711a6f  # Store your Subscription ID in GitHub Secrets
-          auth-type: IDENTITY
-          audience: "api://AzureADTokenExchange"  # Ensure the audience matches your federated credential
+          client-id: 36a2da3a-79e2-418f-a1h0-a568d1d07e0f4
+          tenant-id: fdd066e1-ee37-49bc-b08f-d0e152119b04
+          subscription-id: f89fc1d7-0449-4b52-bdd7-804f53711a6f
+          enable-AzPSSession: true
 
-      - name: Access Azure Storage Blob
+      - name: Download flag
         run: |
           az storage blob download \
             --account-name iamazurelab3331fa542 \
             --container-name flag \
             --name flag.txt \
-            --file flag.txt  # Adjust the local path to match the runner's OS (Linux/Unix)
+            --file flag.txt \
+            --auth-mode login
+      - name: Read flag
+        run: |
+          cat flag.txt
